@@ -36,49 +36,42 @@ public abstract class Vehicule {
 // Method of Vehicle to fill up 
 	protected void fairePlein(Pompe pompe) {
 		if ((getContenueReservoir() < getContenanceReservoir()) &&
-			(getCarburant() == pompe.getTypeCarb()) &&
-			(pompe.getContenuCarb() >= getContenanceReservoir()) ) {
+				(getCarburant() == pompe.getTypeCarb()) &&
+				(pompe.getContenuCarb() >= (getContenanceReservoir()-getContenueReservoir())) ) {
 			
-			System.out.println("Je dois faire le plein car " + getContenueReservoir()+ "L sur " + getContenanceReservoir()+"L." );
-			System.out.println("La pompe possède " +pompe.getContenuCarb()+" sur "+pompe.getContenanceCarb()+" litres." );
-			System.out.println("Je suis en train de faire le plein...");
+				System.out.println("Je dois faire le plein car " + getContenueReservoir()+ "L sur " + getContenanceReservoir()+"L." );
+				System.out.println("La pompe possède " +pompe.getContenuCarb()+" sur "+pompe.getContenanceCarb()+" litres." );
+				System.out.println("Je suis en train de faire le plein...");
+				
+				
+				pompe.setContenuCarb(pompe.getContenuCarb() - (this.getContenanceReservoir()-this.getContenueReservoir()) );
+				this.setContenueReservoir( (this.getContenanceReservoir()-this.getContenueReservoir())+this.getContenueReservoir() );
+				
+				System.out.println("La pompe possède après mon plein " +pompe.getContenuCarb()+" sur "+pompe.getContenanceCarb()+" litres." );
+				System.out.println("Mon plein est fait je suis à "+ getContenueReservoir()+ "L sur "+ getContenanceReservoir()+"L.");
 			
-			this.setContenueReservoir( this.getContenanceReservoir() );
-			pompe.setContenuCarb(pompe.getContenuCarb() - this.getContenueReservoir() );
 			
-			System.out.println("Mon plein est fait je suis à "+ getContenueReservoir()+ "L sur "+ getContenanceReservoir()+"L.");
-			System.out.println("La pompe possède " +pompe.getContenuCarb()+" sur "+pompe.getContenanceCarb()+" litres." );
+		} else if ((getContenueReservoir() > getContenanceReservoir()) &&
+				(getCarburant() == pompe.getTypeCarb()) &&
+				(pompe.getContenuCarb() >= (getContenanceReservoir()-getContenueReservoir()))) {
+				System.out.println("Vous êtes fort ! Etes-vous Dieu ?");
 			
+		} else if ((getContenueReservoir() < getContenanceReservoir()) &&
+				(getCarburant() != pompe.getTypeCarb()) &&
+				(pompe.getContenuCarb() >= (getContenanceReservoir()-getContenueReservoir()))){
+				System.out.println("La pompe qui a un carburant "+ pompe.getTypeCarb() + " ne correspond pas à votre véhicule qui est de type " + getCarburant()+".");
 			
+		} else if ((getContenueReservoir() < getContenanceReservoir()) &&
+				(getCarburant() == pompe.getTypeCarb()) &&
+				(pompe.getContenuCarb() < (getContenanceReservoir()-getContenueReservoir()))) {
+			System.out.println("Pas de bol pas assez de carburant " + pompe.getTypeCarb() + " pour faire le plein");
 		} else {
-		System.out.println("Il vous manque une des conditions suivantes pour faire un plein: Niveau du reservoir, le bon type de carburant ou de l'essence dans la pompe");
+	
+				System.out.println("Il vous manque plusieurs conditions pour réaliser votre plein. Vérifiez: Niveau du reservoir, type de carburant ou il n'y a pas assez dans la pompe pour faire un plein");
 		}
-	}
-
-
+}
 }
 	
-
-
-
-
-
-
-
-
-/* switch(pompe){
- * case pompe.getContenuCarb() >= getContenanceReservoir() || getContenueReservoir() < getContenanceReservoir() || getCarburant() == pompe.getTypeCarb():
- * 		BLABLA BLOCKED
- * case pompe.getContenuCarb() >= getContenanceReservoir() || getContenueReservoir() < getContenanceReservoir() || getCarburant() != pompe.getTypeCarb():
- * 		System.out.println("La pompe qui a un carburant "+ pompe.TypeCarb() + " ne correspond pas à " + identifier()+".";
- * 		break;
- * case pompe.getContenuCarb() >= getContenanceReservoir() || getContenueReservoir() > getContenanceReservoir() || getCarburant() == pompe.getTypeCarb():
- * 		System.out.println("Vous êtes fort ! Etes-vous Dieu ?";
- * 		break;
- * case pompe.getContenuCarb() < (getContenanceReservoir()-getContenueReservoir()) || getContenueReservoir() < getContenanceReservoir() || getCarburant() == pompe.getTypeCarb():
- * 		System.out.println("Pas de bol pas assez de carburant" + TypeCarb() + " pour faire le plein";
- * 		break;
- * */
 	
 		
 		
